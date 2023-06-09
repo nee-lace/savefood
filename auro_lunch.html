@@ -1,0 +1,230 @@
+<!-- <!DOCTYPE html>
+<html>
+<head>
+  <title>Survey Website</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    h1 {
+        text-align: center;
+        padding: 20px;
+    }
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+  </style>
+</head>
+<body>
+    <h1>Will You attend this meal</h1>
+  <div class="container">
+    
+    <form id="surveyForm">
+      <label>
+        <input type="radio" name="response" value="yes" required> Yes
+      </label>
+      <label>
+        <input type="radio" name="response" value="no" required> No
+      </label>
+      <button type="submit">Submit</button>
+    </form>
+    <div id="chartContainer">
+      <canvas id="chart"></canvas>
+    </div>
+  </div>
+
+  <script>
+    // Reset the chart data at 00:00:00 each day
+    function resetChartData() {
+      const currentDate = new Date();
+      const resetTime = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate() + 1, 0, 0, 0);
+
+      const timeUntilReset = resetTime.getTime() - currentDate.getTime();
+
+      setTimeout(() => {
+        localStorage.removeItem('chartData');
+        updateChart();
+        resetChartData();
+      }, timeUntilReset);
+    }
+
+    // Function to update the chart data
+    function updateChart(response) {
+      const data = {
+        labels: ['Yes', 'No'],
+        datasets: [{
+          data: [0, 0],
+          backgroundColor: ['#36A2EB', '#FF6384'],
+          hoverBackgroundColor: ['#36A2EB', '#FF6384']
+        }]
+      };
+
+      // Fetch the current data from the chart
+      const chart = document.getElementById('chart').getContext('2d');
+      const currentData = JSON.parse(localStorage.getItem('chartData')) || data;
+
+      // Update the current data based on the response
+      if (response === 'yes') {
+        currentData.datasets[0].data[0]++;
+      } else if (response === 'no') {
+        currentData.datasets[0].data[1]++;
+      }
+
+      // Save the updated data to localStorage
+      localStorage.setItem('chartData', JSON.stringify(currentData));
+
+      // Render the chart
+      new Chart(chart, {
+        type: 'pie',
+        data: currentData
+      });
+    }
+
+    // Function to handle form submission
+    document.getElementById('surveyForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      // Get the selected response
+      const response = document.querySelector('input[name="response"]:checked').value;
+
+      // Update the chart data
+      updateChart(response);
+    });
+
+    // Load the chart on page load
+    window.addEventListener('load', function() {
+      const chart = document.getElementById('chart').getContext('2d');
+      const data = JSON.parse(localStorage.getItem('chartData')) || {
+        labels: ['Yes', 'No'],
+        datasets: [{
+          data: [0, 0],
+          backgroundColor: ['#36A2EB', '#FF6384'],
+          hoverBackgroundColor: ['#36A2EB', '#FF6384']
+        }]
+      };
+
+      new Chart(chart, {
+        type: 'pie',
+        data: data
+      });
+    });
+  </script>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Survey 1</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Survey 1</h1>
+    <form id="surveyForm">
+      <label>
+        <input type="radio" name="response" value="yes" required> Yes
+      </label>
+      <label>
+        <input type="radio" name="response" value="no" required> No
+      </label>
+      <button type="submit">Submit</button>
+    </form>
+    <div id="chartContainer1">
+      <canvas id="chart1"></canvas>
+    </div>
+  </div>
+
+  <script>
+    const surveyId = 'survey1';
+
+    // Reset the chart data at 00:00:00 each day
+    function resetChartData() {
+      const currentDate = new Date();
+      const resetTime = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate() + 1, 0, 0, 0);
+
+      const timeUntilReset = resetTime.getTime() - currentDate.getTime();
+
+      setTimeout(() => {
+        localStorage.removeItem('survey1');
+        updateChart();
+        resetChartData();
+      }, timeUntilReset);
+    }
+
+    // Function to update the chart data
+    function updateChart(response) {
+      const data = {
+        labels: ['Yes', 'No'],
+        datasets: [{
+          data: [0, 0],
+          backgroundColor: ['#36A2EB', '#FF6384'],
+          hoverBackgroundColor: ['#36A2EB', '#FF6384']
+        }]
+      };
+
+      // Fetch the current data from the chart
+      const chart = document.getElementById('chart1').getContext('2d');
+      const currentData = JSON.parse(localStorage.getItem('survey1')) || data;
+
+      // Update the current data based on the response
+      if (response === 'yes') {
+        currentData.datasets[0].data[0]++;
+      } else if (response === 'no') {
+        currentData.datasets[0].data[1]++;
+      }
+
+      // Save the updated data to localStorage
+      localStorage.setItem('survey1', JSON.stringify(currentData));
+
+      // Render the chart
+      new Chart(chart, {
+        type: 'pie',
+        data: currentData
+      });
+    }
+
+    // Function to handle form submission
+    document.getElementById('surveyForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      // Get the selected response
+      const response = document.querySelector('input[name="response"]:checked').value;
+
+      // Update the chart data
+      updateChart(response);
+    });
+
+    // Load the chart on page load
+    window.addEventListener('load', function() {
+      const chart = document.getElementById('chart1').getContext('2d');
+      const data = JSON.parse(localStorage.getItem('survey1')) || {
+        labels: ['Yes', 'No'],
+        datasets: [{
+          data: [0, 0],
+          backgroundColor: ['#36A2EB', '#FF6384'],
+          hoverBackgroundColor: ['#36A2EB', '#FF6384']
+        }]
+      };
+
+      new Chart(chart, {
+        type: 'pie',
+        data: data
+      });
+
+      // Reset chart data at 00:00:00
+      resetChartData();
+    });
+  </script>
+</body>
+</html>
+
